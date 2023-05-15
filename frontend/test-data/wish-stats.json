@@ -1,0 +1,26 @@
+[
+  {
+    "status": "APPLICATION",
+    "count": 4
+  },
+
+  {
+    "status": "DISCUSSION",
+    "count": 2
+  },
+
+  {
+    "status": "WAITING_ASSOCIATION_VALIDATION",
+    "count": 8
+  },
+
+  {
+    "status": "WAITING_MANAGER_VALIDATION",
+    "count": 6
+  },
+
+  {
+    "status": "IN_PROGRESS",
+    "count": 5
+  }
+]

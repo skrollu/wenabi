@@ -1,0 +1,43 @@
+@import './../../../assets/colors.scss';
+
+.container {
+    width: 80%;
+    min-width: 386px;
+    max-width: 959px;
+    margin: 100px auto;
+    font-family: 'Manjari', sans-serif;
+
+    @media (min-width: 1200px) {
+        width: 959px;
+    }
+
+    .title {
+        position: relative;
+
+        h1 {
+            margin-bottom: 24px;
+            font-size: 36px;
+            font-weight: 700;
+        }
+    
+        h3 {
+            display: flex;
+            font-size: 18px;
+            font-weight: 400;
+    
+            fa-icon {
+                margin-right: 16px;
+            }
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 120px;
+            width: 100%;
+            height: 1px;
+            margin: auto;
+            background-color: $white;
+        }
+    }
+}
