@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,8 +26,8 @@ public class WishResource {
     private final WishService wishService;
 
     @GetMapping
-    Page<WishOutputDto> getWishesByPageAndSortedByStatus(@PageableDefault(size = 10, page = 0, direction = Sort.Direction.ASC, sort = "status") Pageable pageable) {
+    ResponseEntity<Page<WishOutputDto>> getWishesByPageAndSortedByStatus(@PageableDefault(size = 10, page = 0, direction = Sort.Direction.ASC, sort = "status") Pageable pageable) {
         List<WishOutputDto> result = wishService.getWishesByPage(pageable).stream().map(wishDtoMapper::mapToWishOutputDto).collect(Collectors.toList());
-        return new PageImpl(result);
+        return ResponseEntity.ok(new PageImpl<WishOutputDto>(result));
     }
 }
