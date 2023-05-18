@@ -1,9 +1,11 @@
 package com.wenabi.interview.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.ZonedDateTime;
 
+@Builder
 @Data
 public class Wish {
     private Long id;

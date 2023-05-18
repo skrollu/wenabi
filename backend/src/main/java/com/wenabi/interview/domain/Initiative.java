@@ -1,7 +1,9 @@
 package com.wenabi.interview.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
+@Builder
 @Data
 public class Initiative {
     private Long id;
