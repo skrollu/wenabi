@@ -34,3 +34,19 @@ VALUES ('DISCUSSION', CURRENT_TIMESTAMP() - 1, 1, 2),
        ('CANCELLED', DATEADD('DAY', -15, CURRENT_TIMESTAMP()), 5, 1),
        ('DISCUSSION', CURRENT_TIMESTAMP(), 5, 3)
 ;
+
+INSERT INTO users (username, password)
+VALUES ('company_user', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02'),
+       ('association_user', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02')
+;
+
+INSERT INTO role (name)
+VALUES ('ROLE_USER'),
+       ('ROLE_ASSOCIATION')
+;
+
+INSERT INTO users_role (users_id, role_id)
+VALUES (1,1),
+       (2,1),
+       (2,2)
+;

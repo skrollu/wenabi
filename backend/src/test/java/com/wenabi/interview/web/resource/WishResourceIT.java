@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -22,6 +23,7 @@ public class WishResourceIT {
     @Autowired
     private MockMvc mockMvc;
 
+    @WithMockUser(roles = {"ASSOCIATION"})
     @Test
     void getWishesByPageAndSortedByStatus_withoutParams_givesAnAscendingSortedPageOfSize10ByDefault() throws Exception {
         mockMvc.perform(get(BASE_URL))
@@ -32,6 +34,7 @@ public class WishResourceIT {
         ;
     }
 
+    @WithMockUser(roles = {"ASSOCIATION"})
     @Test
     void getWishesByPageAndSortedByStatus_withASortParam_givesTheAccordingPage() throws Exception {
         mockMvc.perform(get(BASE_URL + "?sort=id"))
@@ -50,6 +53,7 @@ public class WishResourceIT {
         ;
     }
 
+    @WithMockUser(roles = {"ASSOCIATION"})
     @Test
     void getWishesByPageAndSortedByStatus_withASortParamWithDescendingDirection_givesTheAccordingPage() throws Exception {
         mockMvc.perform(get(BASE_URL + "?sort=id,DESC"))
@@ -68,6 +72,7 @@ public class WishResourceIT {
         ;
     }
 
+    @WithMockUser(roles = {"ASSOCIATION"})
     @Test
     void getWishesByPageAndSortedByStatus_withCombinedParams_givesTheAccordingPage() throws Exception {
         mockMvc.perform(get(BASE_URL + "?page=1&sort=id,ASC"))
