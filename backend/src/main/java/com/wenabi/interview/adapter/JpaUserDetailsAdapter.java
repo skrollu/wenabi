@@ -2,7 +2,6 @@ package com.wenabi.interview.adapter;
 
 import com.wenabi.interview.repository.UserRepository;
 import com.wenabi.interview.repository.jpa.UserJpa;
-import com.wenabi.interview.repository.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +15,6 @@ import java.util.Optional;
 public class JpaUserDetailsAdapter implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

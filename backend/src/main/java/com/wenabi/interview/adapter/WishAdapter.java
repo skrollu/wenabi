@@ -11,5 +11,5 @@ public interface WishAdapter {
      * @param pageable
      * @return wishes in a {@link Page}
      */
-    Page<Wish> getWishesByPage(Pageable pageable);
+    Page<Wish> getWishesByPageAndUserId(Pageable pageable, Long userId);
 }

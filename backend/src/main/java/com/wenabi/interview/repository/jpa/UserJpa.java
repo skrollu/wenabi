@@ -26,7 +26,11 @@ public class UserJpa implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleJpa> roles = new HashSet<>();
 
-   @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
        return roles.stream().map((r) -> new SimpleGrantedAuthority(r.getAuthority())).collect(Collectors.toList());
     }

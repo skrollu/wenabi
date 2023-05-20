@@ -18,6 +18,10 @@ public class ProfileJpa implements Serializable {
     @ManyToOne
     private CompanyJpa company;
 
+    @OneToOne
+    @JoinColumn(name = "users_id", referencedColumnName = "id")
+    private UserJpa user;
+
     public Long getId() {
         return id;
     }
@@ -51,6 +55,15 @@ public class ProfileJpa implements Serializable {
 
     public ProfileJpa setCompany(CompanyJpa company) {
         this.company = company;
+        return this;
+    }
+
+    public UserJpa getUser() {
+        return user;
+    }
+
+    public ProfileJpa setUser(UserJpa user) {
+        this.user = user;
         return this;
     }
 }

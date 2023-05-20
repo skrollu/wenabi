@@ -14,7 +14,7 @@ public class WishServiceImpl implements WishService {
 
     private final WishAdapter wishAdapter;
 
-    public Page<Wish> getWishesByPage(Pageable pageable) {
-        return wishAdapter.getWishesByPage(pageable);
+    public Page<Wish> getWishesByPageAndUserId(Pageable pageable, Long userId) {
+        return wishAdapter.getWishesByPageAndUserId(pageable, userId);
     }
 }

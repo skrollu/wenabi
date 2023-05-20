@@ -1,15 +1,37 @@
+INSERT INTO users (username, password)
+VALUES ('company_user', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02'),
+       ('association_user', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02'),
+       ('user1', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02'),
+       ('user2', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02'),
+       ('user3', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02')
+;
+
+INSERT INTO role (name)
+VALUES ('ROLE_USER'),
+       ('ROLE_ASSOCIATION')
+;
+
+INSERT INTO users_role (users_id, role_id)
+VALUES (1,1),
+       (2,1),
+       (2,2),
+       (3,1),
+       (4,1),
+       (5,1)
+;
+
 INSERT INTO company (name)
 VALUES ('Wenabi'),
        ('Company 1'),
        ('Company 2'),
        ('Company 3');
 
-INSERT INTO profile (first_name, last_name, company_id)
-VALUES ('John', 'Doe', 1),
-       ('Mike', 'Simpson', 2),
-       ('Jean', 'Dupond', 3),
-       ('Satoshi', 'Nakamoto', 4),
-       ('Michel', 'Francois', 1)
+INSERT INTO profile (first_name, last_name, company_id, users_id)
+VALUES ('John', 'Doe', 1, 1),
+       ('Mike', 'Simpson', 2, 2),
+       ('Jean', 'Dupond', 3, 3),
+       ('Satoshi', 'Nakamoto', 4, 4),
+       ('Michel', 'Francois', 1, 5)
 ;
 
 INSERT INTO initiative (title, street_name, city, postal_code, country, coordinator_profile_id)
@@ -33,20 +55,4 @@ VALUES ('DISCUSSION', CURRENT_TIMESTAMP() - 1, 1, 2),
        ('DISCUSSION', CURRENT_TIMESTAMP(), 3, 3),
        ('CANCELLED', DATEADD('DAY', -15, CURRENT_TIMESTAMP()), 5, 1),
        ('DISCUSSION', CURRENT_TIMESTAMP(), 5, 3)
-;
-
-INSERT INTO users (username, password)
-VALUES ('company_user', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02'),
-       ('association_user', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02')
-;
-
-INSERT INTO role (name)
-VALUES ('ROLE_USER'),
-       ('ROLE_ASSOCIATION')
-;
-
-INSERT INTO users_role (users_id, role_id)
-VALUES (1,1),
-       (2,1),
-       (2,2)
 ;

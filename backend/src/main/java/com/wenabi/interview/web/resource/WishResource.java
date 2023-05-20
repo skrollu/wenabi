@@ -1,5 +1,6 @@
 package com.wenabi.interview.web.resource;
 
+import com.wenabi.interview.repository.jpa.UserJpa;
 import com.wenabi.interview.service.WishService;
 import com.wenabi.interview.web.mapper.WishDtoMapper;
 import com.wenabi.interview.web.response.WishOutputDto;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,8 +30,9 @@ public class WishResource {
 
     @PreAuthorize("hasRole('ASSOCIATION')")
     @GetMapping
-    ResponseEntity<Page<WishOutputDto>> getWishesByPageAndSortedByStatus(@PageableDefault(size = 10, page = 0, direction = Sort.Direction.ASC, sort = "status") Pageable pageable) {
-        List<WishOutputDto> result = wishService.getWishesByPage(pageable).stream().map(wishDtoMapper::mapToWishOutputDto).collect(Collectors.toList());
-        return ResponseEntity.ok(new PageImpl<WishOutputDto>(result));
+    ResponseEntity<Page<WishOutputDto>> getWishesByPageAndSortedByStatus(@PageableDefault(size = 10, page = 0, direction = Sort.Direction.ASC, sort = "status") Pageable pageable, Principal principal) {
+        UserJpa user = (UserJpa) principal;
+        List<WishOutputDto> result = wishService.getWishesByPageAndUserId(pageable, user.getId()).stream().map(wishDtoMapper::mapToWishOutputDto).collect(Collectors.toList());
+        return ResponseEntity.ok(new PageImpl<WishOutputDto>(result, pageable, pageable.getPageSize()));
     }
 }

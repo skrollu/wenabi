@@ -20,45 +20,55 @@ import static org.mockito.Mockito.when;
 public class WishAdapterTest {
 
     @Test
-    void getWishesByPage_withANullPageable_throwError() {
+    void getWishesByPageAndUserId_withANullPageable_throwError() {
         WishRepository wishRepository = mock(WishRepository.class);
-        // when(wishRepository.findAll((Pageable) null)).thenReturn(null);
         WishMapper wishMapper = mock(WishMapper.class);
-        // when(wishMapper.mapToWish(any())).thenReturn(null);
         WishAdapter instance = new WishAdapterImpl(wishRepository, wishMapper);
 
-        assertThrows(NullPointerException.class, () -> instance.getWishesByPage(null));
+        assertThrows(NullPointerException.class, () -> instance.getWishesByPageAndUserId(null, 1L));
     }
 
     @Test
-    void getWishesByPage_withAValidPageableAndRepositoryReturnAnEmptyPage_givesAnEmptyPage() {
+    void getWishesByPageAndUserId_withANullUserId_throwError() {
+        WishRepository wishRepository = mock(WishRepository.class);
+        WishMapper wishMapper = mock(WishMapper.class);
+        PageRequest pageable = PageRequest.of(0, 20, Sort.by("status"));
+        WishAdapter instance = new WishAdapterImpl(wishRepository, wishMapper);
+
+        assertThrows(NullPointerException.class, () -> instance.getWishesByPageAndUserId(pageable, null));
+    }
+
+
+    @Test
+    void getWishesByPageAndUserId_withAValidPageableAndRepositoryReturnAnEmptyPage_givesAnEmptyPage() {
         WishRepository wishRepository = mock(WishRepository.class);
         PageRequest pageable = PageRequest.of(0, 20, Sort.by("status"));
-        when(wishRepository.findAll(pageable)).thenReturn(Page.empty());
+        when(wishRepository.findByInitiativeCoordinatorProfileUserId(pageable, 1L)).thenReturn(Page.empty());
         WishMapper wishMapper = mock(WishMapper.class);
         WishAdapter instance = new WishAdapterImpl(wishRepository, wishMapper);
 
-        Page result = instance.getWishesByPage(pageable);
+        Page result = instance.getWishesByPageAndUserId(pageable, 1L);
 
         assertThat(result).isNotNull();
         assertThat(result.isEmpty()).isTrue();
     }
 
     @Test
-    void getWishesByPage_withAValidPageable_givesAValidPage() {
+    void getWishesByPageAndUserId_withAValidPageable_givesAValidPage() {
         WishRepository wishRepository = mock(WishRepository.class);
         PageRequest pageable = PageRequest.of(0, 20, Sort.by("status"));
         WishJpa wishJpa = new WishJpa().setId(1L);
-        when(wishRepository.findAll(pageable)).thenReturn(new PageImpl(Arrays.asList(wishJpa)));
+        when(wishRepository.findByInitiativeCoordinatorProfileUserId(pageable, 1L)).thenReturn(new PageImpl(Arrays.asList(wishJpa)));
         WishMapper wishMapper = mock(WishMapper.class);
         when(wishMapper.mapToWish(wishJpa)).thenReturn(Wish.builder().id(1L).build());
 
         WishAdapter instance = new WishAdapterImpl(wishRepository, wishMapper);
 
-        Page<Wish> result = instance.getWishesByPage(pageable);
+        Page<Wish> result = instance.getWishesByPageAndUserId(pageable, 1L);
 
         System.out.println(result);
-        assertThat(result.getTotalElements()).isOne();
+        assertThat(result.getTotalElements()).isEqualTo(20L);
+        assertThat(result.getNumberOfElements()).isEqualTo(1L);
         assertThat(result.getContent().get(0).getId()).isEqualTo(1L);
     }
 }

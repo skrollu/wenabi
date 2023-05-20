@@ -22,8 +22,8 @@ public class WishAdapterImpl implements WishAdapter {
     private final WishMapper wishMapper;
 
     @Override
-    public Page<Wish> getWishesByPage(@NonNull Pageable pageable) {
-        List wishes = wishRepository.findAll(pageable).stream().map(wishMapper::mapToWish).collect(Collectors.toList());
-        return new PageImpl<>(wishes);
+    public Page<Wish> getWishesByPageAndUserId(@NonNull Pageable pageable, @NonNull Long userId) {
+        List wishes = wishRepository.findByInitiativeCoordinatorProfileUserId(pageable, userId).stream().map(wishMapper::mapToWish).collect(Collectors.toList());
+        return new PageImpl<>(wishes, pageable, pageable.getPageSize());
     }
 }
