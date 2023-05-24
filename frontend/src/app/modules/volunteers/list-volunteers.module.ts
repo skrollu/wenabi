@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { VolunteersComponent } from './volunteers/volunteers.component';
-import { ListComponent } from './list/list.component';
-import { HeaderComponent } from './header/header.component';
-import { TitleComponent } from './title/title.component';
+import { VolunteersComponent } from './components/volunteers/volunteers.component';
+import { ListComponent } from './components/list/list.component';
+import { HeaderComponent } from '../../layout/header/header.component'
+import { TitleComponent } from './components/title/title.component';
 
 const VOLUNTEERS_ROUTES: Routes = [
   { path: '', redirectTo: 'volunteers', pathMatch: 'full'},
