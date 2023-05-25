@@ -1,10 +1,18 @@
 @import "./../../../assets/colors.scss";
 
 main {
-    width: 80%;
-    min-width: 386px;
-    max-width: 959px;
-    margin: 100px auto;
-    font-family: 'Manjari', sans-serif;
+    @media screen and (min-width: 978px) {
+        width: 80%;
+    }
 
+    width: 95%;
+    max-width: 959px;
+    font-family: 'Manjari',
+    sans-serif;
+    padding: 50px 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 100;
+    transform: translate(-50%, 0);
 }
