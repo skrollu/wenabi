@@ -14,14 +14,14 @@
         <div class="global-info">
             <div class="name">{{ wish.volunteerProfile.firstName }} {{ wish.volunteerProfile.lastName }}</div>
             <div class="company">{{ wish.volunteerProfile.company.name }}</div>
-            <div class="mission"><span>logo</span> {{ wish.initiative.title }}</div>
-            <div class="location"><span>logo</span> {{ wish.initiative.postalCode }}, {{ wish.initiative.city }}, {{ wish.initiative.streetName }}</div>
-            <div class="coordinator">{{ wish.initiative.coordinatorProfile.firstName }}</div>
+            <div class="mission"><span><fa-icon [icon]="handIcon"></fa-icon></span> {{ wish.initiative.title }}</div>
+            <div class="location"><span><fa-icon [icon]="pointer"></fa-icon></span> {{ wish.initiative.postalCode }}, {{ wish.initiative.city }}, {{ wish.initiative.streetName }}</div>
+            <div class="coordinator"><span><fa-icon [icon]="userIcon"></fa-icon></span>&nbsp;<span class="underline">{{ wish.initiative.coordinatorProfile.firstName }}</span></div>
         </div>
     </div>
     <div class="subscription-text">
         <div class="status">
-            {{ wish.status }}
+            {{ (status[wish.status]) }}
         </div>
         <div class="description">
             Avant que vous puissiez accepter cette demande, le collaborateur doit renseigner ses dates. Ecrivez-lui pour

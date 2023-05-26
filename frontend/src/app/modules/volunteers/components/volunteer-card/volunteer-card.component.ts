@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { faHandPointRight } from "@fortawesome/free-regular-svg-icons";
+import { faHandPointRight, faUser , faMap} from "@fortawesome/free-regular-svg-icons";
+import { StatusName } from "src/app/core/models/statistics";
 import { Wish } from "src/app/core/models/wish";
 
 @Component({
@@ -10,6 +11,9 @@ import { Wish } from "src/app/core/models/wish";
 export class VolunteerCard implements OnInit {
   @Input() wish: Wish;
   handIcon = faHandPointRight;
+  userIcon = faUser;
+  pointer = faMap;
+  status = StatusName;
 
   constructor() {  }
 

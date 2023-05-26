@@ -13,7 +13,7 @@
     line-height: 130%;
     color: $dark-grey;
 
-    padding: 5px 10px;
+    padding: 2rem 1rem;
     border-radius: 0.8rem;
     box-shadow: 2px 4px 24px rgba(0, 0, 0, 0.08),
     0px 8px 16px rgba(0, 0, 0, 0.06);
@@ -23,9 +23,13 @@
     justify-content: space-between;
 
     .info {
-        width: 49%;
+        @media screen and(min-width: 979px) {
+            width: 49%;
+            column-gap: 0.5rem;
+        }
+
         display: flex;
-        column-gap: 0.5rem;
+        column-gap: 3rem;
 
         .profile {
             position: relative;
@@ -93,19 +97,29 @@
             }
 
             .coordinator {
-                text-decoration: underline;
+                .underline {
+
+                    text-decoration: underline;
+                }
             }
         }
     }
 
     .subscription-text {
-        width: 49%;
+        @media screen and(min-width: 979px) {
+            width: 49%;
+        }
+
         display: flex;
         flex-direction: column;
         row-gap: 0.5rem;
 
         .status {}
 
-        .description {}
+        .description {
+            @media screen and(min-width: 979px) {
+                width: 75%;
+            }
+        }
     }
 }
