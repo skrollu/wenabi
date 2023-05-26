@@ -1,6 +1,6 @@
 INSERT INTO users (username, password)
-VALUES ('company_user', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02'),
-       ('association_user', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02'),
+VALUES ('company_user', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02'), -- password
+       ('association_user', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02'), -- password
        ('user1', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02'),
        ('user2', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02'),
        ('user3', '$2a$12$pOiMlIZtvvtjuKGGR0KCk.HsFNb/mjc/7WGnssoboA/0XLKgkKr02')
