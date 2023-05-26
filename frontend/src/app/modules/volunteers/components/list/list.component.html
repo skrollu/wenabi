@@ -1,3 +1,8 @@
-<div class="list-container">
-  <volunteer-card></volunteer-card>
+<div >
+
 </div>
+<ul class="list-container">
+    <li *ngFor="let wish of wishes">
+        <volunteer-card [wish]="wish"></volunteer-card>
+    </li>
+</ul>
