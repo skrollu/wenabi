@@ -1,0 +1,23 @@
+@import "../../../assets/colors.scss";
+
+.status-container {
+    border: 1px solid rgba(19, 19, 19, 16%);
+    border-radius: 1.4rem;
+    max-width: 90%;
+    width: fit-content;
+    padding: 0.4rem 1rem;
+    column-gap: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .bubble {
+        height: 1rem;
+        width: 1rem;
+        border-radius: 50%;
+    }
+
+    .text{
+        color: rgba($color: #4F4F4F, $alpha: 1.0);
+    }
+}

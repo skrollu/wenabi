@@ -13,7 +13,6 @@ export class VolunteerCard implements OnInit {
   handIcon = faHandPointRight;
   userIcon = faUser;
   pointer = faMap;
-  status = StatusName;
 
   constructor() {  }
 

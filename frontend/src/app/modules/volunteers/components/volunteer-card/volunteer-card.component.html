@@ -20,9 +20,7 @@
         </div>
     </div>
     <div class="subscription-text">
-        <div class="status">
-            {{ (status[wish.status]) }}
-        </div>
+        <app-status [status]="wish.status"></app-status>
         <div class="description">
             Avant que vous puissiez accepter cette demande, le collaborateur doit renseigner ses dates. Ecrivez-lui pour
             l'encourager à le faire !
