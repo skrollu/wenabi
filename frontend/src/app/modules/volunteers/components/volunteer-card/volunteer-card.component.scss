@@ -5,14 +5,6 @@
         flex-direction: row;
     }
 
-    font-family: "Poppins",
-    sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 130%;
-    color: $dark-grey;
-
     padding: 2rem 1rem;
     border-radius: 0.8rem;
     box-shadow: 2px 4px 24px rgba(0, 0, 0, 0.08),
@@ -22,8 +14,10 @@
     row-gap: 1rem;
     justify-content: space-between;
 
+    line-height: 130%;
+    
     .info {
-        @media screen and(min-width: 979px) {
+        @media screen and(min-width: 978px) {
             width: 49%;
             column-gap: 0.5rem;
         }
@@ -106,7 +100,7 @@
     }
 
     .subscription-text {
-        @media screen and(min-width: 979px) {
+        @media screen and(min-width: 978px) {
             width: 49%;
         }
 
@@ -115,7 +109,7 @@
         row-gap: 0.5rem;
 
         .description {
-            @media screen and(min-width: 979px) {
+            @media screen and(min-width: 978px) {
                 width: 75%;
             }
         }

@@ -5,15 +5,17 @@
 
     h1 {
         margin-bottom: 24px;
-        font-size: 36px;
+        font-size: 5rem;
         font-weight: 700;
         color: $white;
     }
 
     h3 {
         display: flex;
+        align-items: baseline;
         font-size: 18px;
         font-weight: 400;
+        color: $white;
 
         fa-icon {
             margin-right: 16px;

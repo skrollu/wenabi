@@ -1,4 +1,20 @@
 <ul class="list-container">
+    <div class="stat-container">
+        <div class=""><h3>En ce moment</h3></div>
+        <div class="volunteers-number-container">
+            <span><span class="volunteers-number">1111</span> inscriptions</span>
+        </div>
+        <progress></progress>
+        <div id="volunteers-status-list">
+            <span class="title">Suivez les inscriptions en fonction de leur statut:</span>
+            <!-- <ul>
+                <li class="volunteers-status" *ngFor="let status of statusList">
+                    button<status></status>
+                </li>
+            </ul> -->
+        </div>
+        <div class="volunteer-search-result">65 inscriptions correspondent à votre recherche</div>
+    </div>
     <li class="volunteer-card" *ngFor="let wish of wishes">
         <volunteer-card [wish]="wish"></volunteer-card>
     </li>

@@ -46,7 +46,5 @@ export class StatusComponent implements OnInit {
         console.error("status is not managed");
         break;
     }
-
-    console.log(this.color)
   }
 }

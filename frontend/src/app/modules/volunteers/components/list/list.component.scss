@@ -1,22 +1,48 @@
 @import "../../../../../assets/colors.scss";
 
 .list-container {
+    @media screen and(min-width:978px) {
+        font-size: 1.8rem;
+    }
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    height: fit-content;
     margin: 30px 0 40px 0;
     padding: 24px 16px;
     background-color: $white;
     border-radius: 25px;
 
+    font-family: "Poppins",
+    sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: $dark-grey;
+
     .stat-container {
-        h2 {
-            width: 95%;
-            margin: auto;
-            font-size: 20px;
-            font-weight: 400;
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .volunteers-number-container {
+            height: 100%;
+
+            .volunteers-number {
+                @media screen and(min-width:978px) {
+                    font-size: 5rem;
+                }
+
+                font-weight: 900;
+                font-size: 4.5rem;
+            }
+        }
+
+        .volunteer-search-result {
+            font-weight: bold;
         }
     }
 
@@ -39,5 +65,5 @@
     .volunteer-card {
         margin: 1rem 0;
     }
-    
+
 }
