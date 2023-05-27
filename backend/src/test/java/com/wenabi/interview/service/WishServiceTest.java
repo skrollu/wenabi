@@ -3,12 +3,14 @@ package com.wenabi.interview.service;
 import com.wenabi.interview.adapter.WishAdapter;
 import com.wenabi.interview.adapter.WishAdapterImpl;
 import com.wenabi.interview.domain.Wish;
+import com.wenabi.interview.domain.WishByStatusStats;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,12 +23,13 @@ public class WishServiceTest {
     void getWishesByPageAndUserId_withANullPageable_givesNothing() {
         WishAdapter wishAdapter = mock(WishAdapterImpl.class);
         when(wishAdapter.getWishesByPageAndUserId(null, 1L))
-                .thenReturn(null);
+                .thenReturn(Page.empty());
         WishService instance = new WishServiceImpl(wishAdapter);
 
         Page<Wish> result = instance.getWishesByPageAndUserId(null, 1L);
 
-        assertThat(result).isNull();
+        assertThat(result).isNotNull();
+        assertThat(result.getTotalElements()).isZero();
     }
 
     @Test
@@ -45,5 +48,33 @@ public class WishServiceTest {
         assertThat(result.getSize()).isEqualTo(2);
         assertThat(result.getContent().get(0).getId()).isEqualTo(1L);
         assertThat(result.getContent().get(1).getId()).isEqualTo(2L);
+    }
+
+    @Test
+    void countWishesByStatusAndUserId_withANullUserId_givesNothing() {
+        WishAdapter wishAdapter = mock(WishAdapterImpl.class);
+        when(wishAdapter.countWishesByStatusAndUserId(null))
+                .thenReturn(new ArrayList<>());
+        WishService instance = new WishServiceImpl(wishAdapter);
+
+        List<WishByStatusStats> result = instance.countWishesByStatusAndUserId(null);
+
+        assertThat(result).isNotNull();
+        assertThat(result.size()).isZero();
+    }
+
+    @Test
+    void countWishesByStatusAndUserId_withAValidUserId_givesStats() {
+        WishAdapter wishAdapter = mock(WishAdapterImpl.class);
+        WishByStatusStats stat1 = WishByStatusStats.builder().status("DISCUSSION").number(1L).build();
+        WishByStatusStats stat2 = WishByStatusStats.builder().status("WAITING_ASSOCIATION_VALIDATION").number(4L).build();
+        List<WishByStatusStats> stats = Arrays.asList(stat1, stat2);
+        when(wishAdapter.countWishesByStatusAndUserId(1L)).thenReturn(stats);
+        WishService instance = new WishServiceImpl(wishAdapter);
+
+        List<WishByStatusStats> result = instance.countWishesByStatusAndUserId(1L);
+
+        assertThat(result).isNotNull();
+        assertThat(result.size()).isEqualTo(2);
     }
 }

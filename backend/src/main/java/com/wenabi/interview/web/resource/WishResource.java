@@ -3,6 +3,7 @@ package com.wenabi.interview.web.resource;
 import com.wenabi.interview.repository.jpa.UserJpa;
 import com.wenabi.interview.service.WishService;
 import com.wenabi.interview.web.mapper.WishDtoMapper;
+import com.wenabi.interview.web.response.WishByStatusStatOutputDto;
 import com.wenabi.interview.web.response.WishOutputDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -35,4 +36,13 @@ public class WishResource {
         List<WishOutputDto> result = wishService.getWishesByPageAndUserId(pageable, user.getId()).stream().map(wishDtoMapper::mapToWishOutputDto).collect(Collectors.toList());
         return ResponseEntity.ok(new PageImpl<WishOutputDto>(result, pageable, pageable.getPageSize()));
     }
+
+    @PreAuthorize("hasRole('ASSOCIATION')")
+    @GetMapping("/stats")
+    ResponseEntity<List<WishByStatusStatOutputDto>> getWishesStats(Authentication principal) {
+        UserJpa user = (UserJpa)principal.getPrincipal();
+        List<WishByStatusStatOutputDto> result = wishService.countWishesByStatusAndUserId(user.getId()).stream().map(wishDtoMapper::mapToWishByStatusStatOutputDto).collect(Collectors.toList());
+        return ResponseEntity.ok(result);
+    }
+
 }

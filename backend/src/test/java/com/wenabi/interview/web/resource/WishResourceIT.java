@@ -68,4 +68,15 @@ public class WishResourceIT {
                 .andExpect(jsonPath("$.content[0].id", is(1)))
         ;
     }
+
+    @Test
+    void getWishesStats_givesStats() throws Exception {
+        mockMvc.perform(get(BASE_URL + "/stats").with(authorization()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.[0].status", is("DISCUSSION")))
+                .andExpect(jsonPath("$.[0].number", is(1)))
+                .andExpect(jsonPath("$.[1].status", is("WAITING_ASSOCIATION_VALIDATION")))
+                .andExpect(jsonPath("$.[1].number", is(1)))
+        ;
+    }
 }
