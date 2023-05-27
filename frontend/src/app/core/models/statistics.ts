@@ -1,6 +1,6 @@
 
 export interface Statistics {
-    status: string;
+    status: StatusName;
     count: number;
 }
 

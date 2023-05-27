@@ -8,6 +8,7 @@ import { StatusName } from "src/app/core/models/statistics";
 })
 export class StatusComponent implements OnInit {
   @Input() status: StatusName;
+  @Input() count: number;
   statusName: string;
   color: string;
 

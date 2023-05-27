@@ -2,16 +2,18 @@
     <div class="stat-container">
         <div class=""><h3>En ce moment</h3></div>
         <div class="volunteers-number-container">
-            <span><span class="volunteers-number">1111</span> inscriptions</span>
+            <span><span class="volunteers-number">{{ countTotalStatsCount() }}</span> inscriptions</span>
         </div>
         <progress></progress>
-        <div id="volunteers-status-list">
+        <div class="volunteers-status-list">
             <span class="title">Suivez les inscriptions en fonction de leur statut:</span>
-            <!-- <ul>
-                <li class="volunteers-status" *ngFor="let status of statusList">
-                    button<status></status>
+            <ul>
+                <li class="volunteer-status" *ngFor="let stat of stats">
+                    <button>
+                        <app-status [status]="stat.status" [count]="stat.count"></app-status>
+                    </button>
                 </li>
-            </ul> -->
+            </ul>
         </div>
         <div class="volunteer-search-result">65 inscriptions correspondent à votre recherche</div>
     </div>
