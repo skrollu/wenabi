@@ -10,5 +10,5 @@ import lombok.Data;
 public class WishByStatusStats {
 
     private String status;
-    private Long number;
+    private Long count;
 }
