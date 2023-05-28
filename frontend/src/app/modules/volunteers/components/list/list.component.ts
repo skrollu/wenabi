@@ -38,7 +38,6 @@ export class ListComponent implements OnInit {
   getWishesStats(): void {
     this.wishesService.getWishesStats().subscribe((data: Statistics[]) => {
       this.stats = data;
-      console.log("data from API", this.stats)
     });
   }
 

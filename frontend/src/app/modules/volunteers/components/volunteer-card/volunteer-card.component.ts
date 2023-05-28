@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { faHandPointRight, faUser , faMap} from "@fortawesome/free-regular-svg-icons";
+import * as moment from "moment";
 import { StatusName } from "src/app/core/models/statistics";
 import { Wish } from "src/app/core/models/wish";
 
@@ -16,5 +17,9 @@ export class VolunteerCard implements OnInit {
 
   constructor() {  }
 
-  ngOnInit() {  }
+  ngOnInit() { }
+
+   formatDate() : string {
+    return moment(this.wish.createdDate).format('DD/MM/YYYY');
+   }
 }

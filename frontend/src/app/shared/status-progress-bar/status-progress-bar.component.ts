@@ -20,7 +20,6 @@ export class StatusProgressBarComponent implements OnInit {
         const statIndex = this.statistics.findIndex(stat => stat.status === status);
         const count = this.statistics[statIndex].count;
 
-        console.log((count / totalStatisticsCount) * 100)
         return (count / totalStatisticsCount) * 100;
     }
 

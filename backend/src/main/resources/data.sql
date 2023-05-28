@@ -39,7 +39,10 @@ VALUES ('Distribuer des repas chauds le soir aux plus démunis', '17 rue des lil
        ('Collectez de denrées alimentaire', '256 rue du bonheur', 'Paris', '75000', 'FR', 2),
        ('Distribuez des repas chauds à la Porte de la Villette', 'Avenue Victor Hugo', 'Paris', '75000', 'FR', 3),
        ('Je donne un livre pour la collecte de La Chorba !', 'Chemin du topinambour', 'Lyon', '69000', 'FR', 4),
-       ('Accompagnez un jeune dans sa scolarité', 'Rue fresques', 'Nîmes', '30000', 'FR', 5)
+       ('Accompagnez un jeune dans sa scolarité', 'Rue fresques', 'Nîmes', '30000', 'FR', 5),
+       ('Faire découvrir l escalade aux enfants défavoriser', 'Route de la ferme', 'Oissel', '76000', 'FR', 2),
+       ('Classe de neige pour enfants', 'Rue des artichauts', 'Valmont', '76110', 'FR', 2),
+       ('Nettoyons la nature', 'Rue boulot', 'Rouen', '76000', 'FR', 2)
 ;
 
 INSERT INTO wish (status, created_date, volunteer_profile_id, initiative_id)
@@ -54,5 +57,15 @@ VALUES ('DISCUSSION', CURRENT_TIMESTAMP() - 1, 1, 2),
        ('CANCELLED', DATEADD('DAY', -1, CURRENT_TIMESTAMP()), 4, 4),
        ('DISCUSSION', CURRENT_TIMESTAMP(), 3, 3),
        ('CANCELLED', DATEADD('DAY', -15, CURRENT_TIMESTAMP()), 5, 1),
-       ('DISCUSSION', CURRENT_TIMESTAMP(), 5, 3)
+       ('DISCUSSION', CURRENT_TIMESTAMP(), 5, 3),
+       ('CANCELLED', CURRENT_TIMESTAMP(), 1, 5),
+       ('DISCUSSION', CURRENT_TIMESTAMP(), 2, 2),
+       ('USER_HAS_PARTICIPATED', CURRENT_TIMESTAMP(), 3, 6),
+       ('IN_PROGRESS', DATEADD('DAY', -15, CURRENT_TIMESTAMP()), 4, 7),
+       ('APPLICATION',DATEADD('DAY', -15, CURRENT_TIMESTAMP()), 5, 8),
+       ('CANCELLED', CURRENT_TIMESTAMP(), 5, 8),
+       ('WAITING_ASSOCIATION_VALIDATION', CURRENT_TIMESTAMP(), 5, 8),
+       ('IN_PROGRESS', CURRENT_TIMESTAMP(), 5, 8),
+       ('APPLICATION', DATEADD('DAY', -15, CURRENT_TIMESTAMP()), 5, 8),
+       ('IN_PROGRESS', CURRENT_TIMESTAMP(), 5, 8)
 ;

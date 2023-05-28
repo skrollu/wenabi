@@ -72,7 +72,7 @@ ALTER TABLE public.wish
 
 ALTER TABLE public.wish
     ADD FOREIGN KEY (initiative_id)
-        REFERENCES public.profile (id);
+        REFERENCES public.initiative (id);
 
 ALTER TABLE public.users_role
     ADD FOREIGN KEY (users_id)
