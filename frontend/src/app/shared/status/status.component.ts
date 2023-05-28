@@ -9,6 +9,7 @@ import { StatusName } from "src/app/core/models/statistics";
 export class StatusComponent implements OnInit {
   @Input() status: StatusName;
   @Input() count: number;
+  @Input() styleClass: string;
   statusName: string;
   color: string;
 

@@ -9,15 +9,15 @@
             <span class="title">Suivez les inscriptions en fonction de leur statut:</span>
             <ul>
                 <li class="volunteer-status" *ngFor="let stat of stats">
-                    <button>
-                        <app-status [status]="stat.status" [count]="stat.count"></app-status>
+                    <button (click)="toggleStatus(stat.status)" > 
+                        <app-status [status]="stat.status" [count]="stat.count" [styleClass]="{'active': isStatusSelected(stat.status)}"></app-status>
                     </button>
                 </li>
             </ul>
         </div>
-        <div class="volunteer-search-result">65 inscriptions correspondent à votre recherche</div>
+        <div class="volunteer-search-result">{{ displayedWishes.length }} inscriptions correspondent à votre recherche</div>
     </div>
-    <li class="volunteer-card" *ngFor="let wish of wishes">
+    <li class="volunteer-card" *ngFor="let wish of displayedWishes">
         <volunteer-card [wish]="wish"></volunteer-card>
     </li>
 </ul>

@@ -1,4 +1,4 @@
-<div class="status-container">
+<div class="status-container" [ngClass]="styleClass">
     <div class="bubble" [style.backgroundColor]="color"></div>
-    <div class="text">{{ statusName }} {{ number }}</div>
+    <div class="text">{{ statusName }} {{ count }}</div>
 </div>
