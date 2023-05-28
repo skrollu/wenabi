@@ -87,13 +87,13 @@ public class WishAdapterTest {
     @Test
     void countWishesByStatusAndUserId_withAValidUserId_givesStats() {
         WishRepository wishRepository = mock(WishRepository.class);
-        WishByStatusStatsModel stat1 = WishByStatusStatsModel.builder().status("DISCUSSION").number(1L).build();
-        WishByStatusStatsModel stat2 = WishByStatusStatsModel.builder().status("WAITING_ASSOCIATION_VALIDATION").number(4L).build();
+        WishByStatusStatsModel stat1 = WishByStatusStatsModel.builder().status("DISCUSSION").count(1L).build();
+        WishByStatusStatsModel stat2 = WishByStatusStatsModel.builder().status("WAITING_ASSOCIATION_VALIDATION").count(4L).build();
         List<WishByStatusStatsModel> stats = Arrays.asList(stat1, stat2);
         when(wishRepository.countWishesByStatusAndUserIdCountedAndGroupedByStatus(1L)).thenReturn(stats);
         WishMapper wishMapper = mock(WishMapper.class);
-        when(wishMapper.mapToWishByStatusStats(stat1)).thenReturn(WishByStatusStats.builder().status("DISCUSSION").number(1L).build());
-        when(wishMapper.mapToWishByStatusStats(stat2)).thenReturn(WishByStatusStats.builder().status("WAITING_ASSOCIATION_VALIDATION").number(4L).build());
+        when(wishMapper.mapToWishByStatusStats(stat1)).thenReturn(WishByStatusStats.builder().status("DISCUSSION").count(1L).build());
+        when(wishMapper.mapToWishByStatusStats(stat2)).thenReturn(WishByStatusStats.builder().status("WAITING_ASSOCIATION_VALIDATION").count(4L).build());
         WishAdapter instance = new WishAdapterImpl(wishRepository, wishMapper);
 
         List<WishByStatusStats> result = instance.countWishesByStatusAndUserId(1L);

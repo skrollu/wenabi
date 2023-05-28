@@ -66,8 +66,8 @@ public class WishServiceTest {
     @Test
     void countWishesByStatusAndUserId_withAValidUserId_givesStats() {
         WishAdapter wishAdapter = mock(WishAdapterImpl.class);
-        WishByStatusStats stat1 = WishByStatusStats.builder().status("DISCUSSION").number(1L).build();
-        WishByStatusStats stat2 = WishByStatusStats.builder().status("WAITING_ASSOCIATION_VALIDATION").number(4L).build();
+        WishByStatusStats stat1 = WishByStatusStats.builder().status("DISCUSSION").count(1L).build();
+        WishByStatusStats stat2 = WishByStatusStats.builder().status("WAITING_ASSOCIATION_VALIDATION").count(4L).build();
         List<WishByStatusStats> stats = Arrays.asList(stat1, stat2);
         when(wishAdapter.countWishesByStatusAndUserId(1L)).thenReturn(stats);
         WishService instance = new WishServiceImpl(wishAdapter);
