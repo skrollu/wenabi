@@ -1,0 +1,13 @@
+@import "../../../assets/colors.scss";
+
+.progress-bar {
+    display: flex;
+    height: 1.6rem;
+    border-radius: 2.4rem;
+    overflow: hidden;
+}
+
+.progress {
+    flex: 1;
+    transition: width 0.3s ease;
+}

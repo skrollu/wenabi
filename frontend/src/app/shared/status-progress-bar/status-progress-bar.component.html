@@ -1,0 +1,4 @@
+<div class="progress-bar">
+    <div class="progress" *ngFor="let status of statusList" [style.width.%]="calculatePercentage(status)"
+        [style.background-color]="getStatusColor(status)"></div>
+</div>

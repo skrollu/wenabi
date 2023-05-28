@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { tap } from "rxjs/internal/operators/tap";
 import { WishesService } from "../../../../core/services/wishes.service";
 import { Pageable } from "../../../../core/models/pageable";
 import { Wish } from "src/app/core/models/wish";
@@ -13,7 +12,7 @@ import { Statistics, StatusName } from "src/app/core/models/statistics";
 export class ListComponent implements OnInit {
   private wishes: Wish[] = [];
   displayedWishes: Wish[] = [];
-  stats: Statistics[] = [];
+  stats: Statistics[] = []
   statusFilterList: StatusName[] = [];
 
   constructor(private wishesService: WishesService) {}
@@ -39,6 +38,7 @@ export class ListComponent implements OnInit {
   getWishesStats(): void {
     this.wishesService.getWishesStats().subscribe((data: Statistics[]) => {
       this.stats = data;
+      console.log("data from API", this.stats)
     });
   }
 
@@ -74,5 +74,11 @@ export class ListComponent implements OnInit {
    */
   isStatusSelected(status: StatusName): boolean {
     return this.statusFilterList.includes(status)
+  }
+
+  getStatusList(): StatusName[] {
+    const result: StatusName[] = []
+    this.stats.forEach(stat => result.push(stat.status))
+    return result;
   }
 }
