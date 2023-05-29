@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { WishesService } from "../../../../core/services/wishes.service";
 import { Pageable } from "../../../../core/models/pageable";
 import { Wish } from "src/app/core/models/wish";
@@ -10,32 +10,51 @@ import { Statistics, StatusName } from "src/app/core/models/statistics";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  private wishes: Wish[] = [];
+  private wishes: Pageable<Wish>;
+  completeWishList: Set<Wish> = new Set();
   displayedWishes: Wish[] = [];
   stats: Statistics[] = []
   statusFilterList: StatusName[] = [];
+  @ViewChild('endOfList', { static: false }) endOfList: ElementRef;
+  loadingWishes: boolean = false;
 
   constructor(private wishesService: WishesService) {}
-
+  
   ngOnInit(): void {
-    this.getWishes();
-    this.getWishesStats();
+      this.getWishes();
+      this.getWishesStats();
+  }
+    
+  ngAfterViewInit() {
+    this.setupScrollListener();
   }
 
   /**
    * get Wishes throught the wishesService and add them to wishes and displayedWishes variables
    */
-  getWishes(): void {
-    this.wishesService.getPageableWishes().subscribe((data: Pageable<Wish>) => {
-      this.wishes = data.content;
-      this.displayedWishes = this.wishes;
+  getWishes(page?: number): void {
+    if(this.loadingWishes) {
+        return;
+    }
+    this.loadingWishes = true;
+    this.wishesService.getPageableWishes(page).subscribe((data: Pageable<Wish>) => {
+        this.wishes = data;
+        data.content.forEach(w => this.completeWishList.add(w)) // TODO fix Set not working nicely
+        this.displayedWishes = [...this.completeWishList].filter(w => this.statusFilterList.includes(w.status))
+        if(this.displayedWishes.length == 0) {
+            this.displayedWishes = [...this.completeWishList]
+        }
+        console.log(this.completeWishList)
+        console.log(this.displayedWishes)
+        this.loadingWishes = false;
     });
+    
   }
 
   /**
    * Add statistics to the stats variable
    */
-  getWishesStats(): void {
+  getWishesStats(page?: number): void {
     this.wishesService.getWishesStats().subscribe((data: Statistics[]) => {
       this.stats = data;
     });
@@ -64,7 +83,7 @@ export class ListComponent implements OnInit {
       this.statusFilterList.push(selectedStatus); // add the status if not
     }
 
-    this.displayedWishes = this.wishes.filter(w => this.statusFilterList.includes(w.status))
+    this.displayedWishes =[...this.completeWishList].filter(w => this.statusFilterList.includes(w.status))
   }
 
   /**
@@ -79,5 +98,26 @@ export class ListComponent implements OnInit {
     const result: StatusName[] = []
     this.stats.forEach(stat => result.push(stat.status))
     return result;
+  }
+
+  /**
+   * setup a scroll listener to initiate infinite scroll effect for wish list.
+   */
+  setupScrollListener() {
+    const scrollContainer = window;
+
+    scrollContainer.addEventListener('scroll', () => {
+      const windowHeight = scrollContainer.innerHeight;
+     
+      const scrollTop = scrollContainer.pageYOffset || scrollContainer.scrollY;
+      const endOfListOffset = this.endOfList.nativeElement.offsetTop;
+
+      // if the scroll is on top of endList mark and there is more wishes pages then load one more
+      if (scrollTop + windowHeight >= endOfListOffset) {
+        if(this.wishes.pageable.pageNumber < this.wishes.totalPages) {
+            this.getWishes(this.wishes.pageable.pageNumber + 1);
+        }
+      }
+    });
   }
 }

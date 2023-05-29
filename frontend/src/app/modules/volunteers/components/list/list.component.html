@@ -22,4 +22,11 @@
     <li class="volunteer-card" *ngFor="let wish of displayedWishes">
         <volunteer-card [wish]="wish"></volunteer-card>
     </li>
+
+    <div #endOfList></div>
+
+    <!-- Loading mark -->
+    <div *ngIf="loadingWishes" class="loading-indicator">
+        Chargement...
+    </div>
 </ul>
