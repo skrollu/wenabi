@@ -9,13 +9,17 @@ import { Statistics } from '../models/statistics';
   providedIn: 'root'
 })
 export class WishesService {
-  private apiUrl = 'http://localhost:8080/api/wishes';
+  private apiUrl = 'http://localhost:8080/api/wishes'; // TODO place it to an environnement variable
 
   constructor(private http: HttpClient) {}
 
-  getPageableWishes(): Observable<Pageable<Wish>> {
+  getPageableWishes(page?: number): Observable<Pageable<Wish>> {
     const headers = this.createBasicAuthHeaders('association_user', 'password');
-    return this.http.get<Pageable<Wish>>(this.apiUrl, { headers });
+    let url = this.apiUrl;
+    if(page != null) {
+        url += "?page=" + page;
+    }
+    return this.http.get<Pageable<Wish>>(url, { headers });
   }
 
   getWishesStats(): Observable<Statistics[]> {

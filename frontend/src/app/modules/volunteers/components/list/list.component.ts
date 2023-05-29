@@ -44,8 +44,6 @@ export class ListComponent implements OnInit {
         if(this.displayedWishes.length == 0) {
             this.displayedWishes = [...this.completeWishList]
         }
-        console.log(this.completeWishList)
-        console.log(this.displayedWishes)
         this.loadingWishes = false;
     });
     
@@ -83,7 +81,11 @@ export class ListComponent implements OnInit {
       this.statusFilterList.push(selectedStatus); // add the status if not
     }
 
-    this.displayedWishes =[...this.completeWishList].filter(w => this.statusFilterList.includes(w.status))
+    if(this.statusFilterList.length > 0) {
+        this.displayedWishes = [...this.completeWishList].filter(w => this.statusFilterList.includes(w.status))
+    } else {
+        this.displayedWishes = [...this.completeWishList]
+    }
   }
 
   /**
