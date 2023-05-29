@@ -7,16 +7,13 @@
 }
 
 html, body {
-  min-height: 100vh;
-  min-width: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    min-height: 100vh;
+
   font-size: 62.5%;
 }
 
 body {
-  background: linear-gradient($dark-yellow, $light-yellow);
+    background: linear-gradient($dark-yellow, $light-yellow, $dark-yellow);
 }
 
 
