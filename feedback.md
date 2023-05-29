@@ -9,7 +9,7 @@ Thank you for taking this test, we are very happy that you dedicated a bit of yo
 It took me 15-20 hours, much more than I expected...
 
 - Around 7 hours for the backend to implement a clean architecture with simple unit tests and some integration tests runinng of push with a github action. I associated Profile entity to the User one using JPA. Endpoints are ASSOCIATION_ROLE based and users must be authenticated to retrieve their data.
-- The rest for the frontend. It took me a few hours to get back to my habits with Angular. I'm not very confident in how I designed this. To save time, I didn't implement a login page. There is only one page that uses the default-association_user credentials with association_role to load the data and adapt it to the mockup.
+- The rest for the frontend. It took me a few hours to get back to my habits with Angular. I'm not very confident in how I designed this. To save time, I didn't implement a login page. There is only one page that uses the default-association_user credentials with association_role to load the data and adapt it to the mockup. I also lost 2 hours in confguring CORS... so I stopped when I finally have something that works even if it's not the right way to configure it.
 
 ## You have something else to say ?
 
