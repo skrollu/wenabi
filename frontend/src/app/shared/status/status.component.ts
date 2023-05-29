@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { StatusName } from "src/app/core/models/statistics";
+import { StatusService } from "src/app/core/services/status.service";
 
 @Component({
   selector: "app-status",
@@ -13,7 +14,7 @@ export class StatusComponent implements OnInit {
   statusName: string;
   color: string;
 
-  constructor() {}
+  constructor(private statusService: StatusService) {}
 
   ngOnInit(): void {
     this.statusName = StatusName[this.status];
@@ -21,32 +22,6 @@ export class StatusComponent implements OnInit {
   }
 
   getStatusColor(status: StatusName): void {
-    switch (StatusName[status]) {
-      case StatusName.APPLICATION.valueOf():
-        this.color = "pink";
-        break;
-      case StatusName.CANCELLED.valueOf():
-        this.color = "grey";
-        break;
-      case StatusName.DISCUSSION.valueOf():
-        this.color = "red";
-        break;
-      case StatusName.IN_PROGRESS.valueOf():
-        this.color = "green";
-        break;
-      case StatusName.USER_HAS_PARTICIPATED.valueOf():
-        this.color = "purple";
-        break;
-      case StatusName.WAITING_ASSOCIATION_VALIDATION.valueOf():
-        this.color = "gold";
-        break;
-      case StatusName.WAITING_MANAGER_VALIDATION.valueOf():
-        this.color = "yellow";
-        break;
-      default:
-        this.color = "black";
-        console.error("status is not managed");
-        break;
-    }
+    this.color = this.statusService.getStatusColor(status);
   }
 }
